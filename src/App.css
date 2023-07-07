@@ -1,0 +1,12 @@
+.App {
+    color: #212427;
+    font-family: "Poppins", sans-serif;
+    width: 100vw;
+    background-color: #ffd000;
+}
+
+@media screen and (min-width: 360px) and (max-width: 820px) {
+    .App {
+        width: max-content;
+    }
+}

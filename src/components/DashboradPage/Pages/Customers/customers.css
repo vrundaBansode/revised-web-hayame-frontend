@@ -1,0 +1,23 @@
+.customers-table-card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    display: block;
+    margin: 10rem 0 0 10rem;
+}
+
+.contractor-booking-table {
+    /* background-color: aqua; */
+    min-width: 66rem;
+    max-width: 66rem;
+    background-color: #b3b2b2;
+    font-family: "Poppins", sans-serif;
+}
+
+
+@media screen and (max-width: 820px) {
+    .customers-table-card {
+        box-shadow: none;
+        border-radius: 10px;
+        margin: 0;
+    }
+}

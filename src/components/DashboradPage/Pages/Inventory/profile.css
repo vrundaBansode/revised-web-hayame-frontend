@@ -1,0 +1,120 @@
+.profile{
+    /* border: 1px solid saddlebrown; */
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    max-width: 40rem;
+    background-color: #fff8d1;
+    margin-top: 8rem;
+    margin-left: 17rem;
+}
+
+.profile-edit-icon {
+    display: block;
+    position: relative;
+    top: 0%;
+    left: 93%;
+    cursor: pointer;
+    /* border: 1px solid rebeccapurple; */
+    width: 1.65rem;
+    height: 1.6rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+}
+
+.profile-edit-icon img {
+    max-width: 25px;
+    max-height: 25px;
+}
+
+.profile-edit-icon:hover {
+    background-color: rgb(185, 184, 184);
+}
+
+.user-profile-card{
+    max-width: 50rem;
+}
+
+.profile-card-content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.profile-card-img {
+    width: 8.5rem;
+}
+
+.profile-card-img img {
+    width: 8rem;
+    border-radius: 50%;
+    border: 4px solid #212427;
+}
+
+.profile-location {
+    display: flex;
+    align-items: center;
+    margin: 0.75rem 0 0 1.5rem;
+}
+
+.profile-location i {
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+/* Edit form */
+.profile-input {
+    display: block;
+    margin: 2rem 2rem;
+    padding: 0.75rem 1rem 0.5rem;
+    width: 25rem;
+    border-style: none;
+    border-bottom: 1px solid #212427;
+    font-size: 20px;
+    border-radius: 2rem;
+    background-color: #212427;
+    color: white;
+    font-family: inherit;
+}
+
+.profile-input::placeholder {
+    font-size: 16px;
+    font-weight: 200;
+    font-family: inherit;
+    font-weight: 200;
+}
+
+.profile-input:focus{
+    background-color: #cdcece;
+    border-collapse: collapse;
+    border-style: none;
+}
+
+.profile-button {
+    background-color: #212427;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: #fff8d1;
+    border-radius: 2rem;
+    display: inline-block;
+    position: relative;
+    left: 70%;
+
+}
+
+.profile-edit-img {
+    border: 2px solid rgb(95, 95, 95);
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.editform-img{
+    border: 4px solid #212427;
+    display: block;
+    margin: auto;
+}
+
+

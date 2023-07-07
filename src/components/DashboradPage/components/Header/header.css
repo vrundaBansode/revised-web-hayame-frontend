@@ -1,0 +1,25 @@
+.DashboardHeader {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+}
+
+.DashboardHeaderText {
+    position: relative;
+    left: 30%;
+    font-family: inherit;
+}
+
+@media screen and (min-width: 360px) and (max-width: 820px) {
+    
+    .DashboardHeader{
+        margin-left: 0;
+        width: 100vw;
+        position: static;
+    }
+
+    .DashboardHeaderText{
+        position: static;
+        padding: 0 0 0 50%;
+        font-size: 23px;
+    }
+}

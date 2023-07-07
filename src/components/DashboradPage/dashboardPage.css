@@ -1,0 +1,13 @@
+.DashboardPage {
+    display: flex;
+    flex-direction: column;
+    width: 100vm;
+    height: 100vh;
+}
+
+.DashboardPageContent {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
