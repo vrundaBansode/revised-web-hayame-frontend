@@ -74,7 +74,7 @@ const AdminDashboard = () => {
             .then((json) => {
                 console.log(json)
                 alert("Labour Added!")
-                navigate('/workforce-list');
+                navigate('/dashboard/workforce-list');
             }
             );
 

@@ -67,7 +67,7 @@ const DashboardForm = () => {
             .then((json) => {
                 console.log(json)
                 alert("Booking Done");
-                navigate('/my-bookings');
+                navigate('/dashboard/customers');
             })
     }
 

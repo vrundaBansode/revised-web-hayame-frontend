@@ -46,7 +46,7 @@ function App() {
           element: (<Orders />)
         },
         {
-          path: "/dashboard/my-bookings",
+          path: "/dashboard/customers",
           element: (<Customers />)
         },
         {
