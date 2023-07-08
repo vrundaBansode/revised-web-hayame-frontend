@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./admindashboard.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const AdminDashboard = () => {
 
     const [options, setOptions] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -73,6 +74,7 @@ const AdminDashboard = () => {
             .then((json) => {
                 console.log(json)
                 alert("Labour Added!")
+                navigate('/workforce-list');
             }
             );
 

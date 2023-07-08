@@ -50,6 +50,15 @@ const Sidebar = ({ userRole }) => {
 
             items={[
               {
+                label: "Home",
+                key: "/",
+                // icon: <AppstoreOutlined />,
+                // style: { margin: "1.5rem 0.5rem 1.5rem 0",
+                //         width: "max-content",
+                //       },
+                className: "sidebar-menu-item"
+              },
+              {
                 label: "Dashboard",
                 key: "./",
                 // icon: <AppstoreOutlined />,
@@ -86,6 +95,15 @@ const Sidebar = ({ userRole }) => {
                 //         width: "max-content",
                 //       },
                 className: "sidebar-menu-item"
+              },
+              {
+                label: "About Us",
+                key: "/about-us",
+                // icon: <AppstoreOutlined />,
+                // style: { margin: "1.5rem 0.5rem 1.5rem 0",
+                //         width: "max-content",
+                //       },
+                className: "sidebar-menu-item"
               }
             ]}
           >
@@ -104,6 +122,15 @@ const Sidebar = ({ userRole }) => {
             // className="sidebar-menu"
 
             items={[
+              {
+                label: "Home",
+                key: "/",
+                // icon: <AppstoreOutlined />,
+                // style: { margin: "1.5rem 0.5rem 1.5rem 0",
+                //         width: "max-content",
+                //       },
+                className: "sidebar-menu-item"
+              },
               {
                 label: "Add Workforce",
                 key: "./",
@@ -157,6 +184,15 @@ const Sidebar = ({ userRole }) => {
                 key: "./workforce-list",
                 // icon: <UserOutlined />,
                 // style: {margin: "1.5rem 0.5rem 1.5rem 0",
+                //         width: "max-content",
+                //       },
+                className: "sidebar-menu-item"
+              },
+              {
+                label: "About Us",
+                key: "/about-us",
+                // icon: <AppstoreOutlined />,
+                // style: { margin: "1.5rem 0.5rem 1.5rem 0",
                 //         width: "max-content",
                 //       },
                 className: "sidebar-menu-item"
