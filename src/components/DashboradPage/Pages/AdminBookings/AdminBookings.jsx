@@ -197,7 +197,7 @@ const AdminBookings = () => {
     let d =[]
 
     const fillTable = async () => {
-      const response = await fetch('http://127.0.0.1:8000/api/booking', {
+      const response = await fetch('http://45.127.4.151:8000/api/booking', {
       headers: {
         'Authorization': 'Token '+ JSON.parse(localStorage.getItem("Token")),
         'Content-Type': 'application/json'

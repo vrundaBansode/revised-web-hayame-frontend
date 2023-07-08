@@ -65,9 +65,8 @@ const handleContractorDashboardForm = (e) => {
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json)
-                    
+                    alert("Booking Done");
                 })
-
   }
 
 
