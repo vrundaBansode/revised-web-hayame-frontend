@@ -151,7 +151,7 @@ const AddWorkforceList = () => {
     dataIndex: 'action',
     key: 'action',
     width: '10%',
-    render: (text) => (<div><span onClick={handleEditAction} style={{ marginRight: "1rem", color: "green" }} >{text}</span><span style={{ color: "red" }} > X </span></div>)
+    render: (text) => (<div><span onClick={handleEditAction} style={{ marginRight: "1rem", color: "green" }} >{text}</span></div>)
     // ...getColumnSearchProps('payment'),
   }
   ];
@@ -187,36 +187,6 @@ const AddWorkforceList = () => {
     fillTable()
   }, [])
 
-
-//   const data = [
-//   {
-//     key: '1',
-//     firstName: "Joe",
-//     lastName: "Schmoe",
-//     email: "joeschmoe@gmail.com",
-//     skill: "Cook",
-//     phone: "5454544596",
-//     action: "Edit"
-//   },
-//   {
-//     key: '2',
-//     firstName: "Harry",
-//     lastName: " Wilson",
-//     email: "harrywilson@gmail.com",
-//     skill: "Construction Worker",
-//     phone: "7548123547",
-//     action: "Edit"
-//   },
-//   {
-//     key: '3',
-//     firstName: "Lorry",
-//     lastName: "Bennete",
-//     email: "lorrybennete@gmail.com",
-//     skill: "hauler",
-//     phone: "9865478514",
-//     action: "Edit"
-//   },
-// ];
 
   return (
     <div className='workforcelist-table-card'>

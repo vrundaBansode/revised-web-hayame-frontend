@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import "./dashboardform.scss"
 import Dashboard from "./Dashboard"
 import { leftarrow } from '../../../../assets'
@@ -7,6 +7,17 @@ import { Link, useNavigate } from "react-router-dom"
 
 
 const DashboardForm = () => {
+
+    const [bookingDetails, setBookingDetails] = useState({
+        jobLoc : "",
+        labourCount: "",
+        startDate: "",
+        endDate: "",
+        startTime: "",
+        endTime: "",
+    })
+
+    const [confirmation, setConfirmation] = useState(false);
 
     const google = window.google;
     const navigate = useNavigate();
@@ -20,7 +31,7 @@ const DashboardForm = () => {
     });
 
 
-    const handleClick = () => {
+    const handleBackArrowClick = () => {
         return (
             <div>
                 <Dashboard />
@@ -28,11 +39,25 @@ const DashboardForm = () => {
         )
     }
 
-    const handleContractorDashboardForm = (e) => {
+    const handleNextClick = () => {
+        setConfirmation(prev=>!prev)
 
-        document.getElementById("next-btn").disabled = true
+        setBookingDetails({
+            jobLoc : document.getElementById("job-loc").value,
+            labourCount : document.getElementById("labour-count").value,
+            startDate : document.getElementById("start-date").value,
+            endDate : document.getElementById("end-date").value,
+            startTime : document.getElementById("start-time").value,
+            endTime : document.getElementById("end-time").value
+        })
 
-        e.preventDefault()
+    }
+
+    const handleConfirmation = () => {
+
+        // document.getElementById("next-btn").disabled = true
+
+        // e.preventDefault()
 
         let paramString = (window.location.search).split('?')[1];
         let queryString = new URLSearchParams(paramString);
@@ -49,12 +74,12 @@ const DashboardForm = () => {
                 "contractor_name": JSON.parse(localStorage.getItem("first_name")) + " " + JSON.parse(localStorage.getItem("last_name")),
                 "contractor_email": JSON.parse(localStorage.getItem("email")),
                 "labour_skill": skill,
-                "labour_count": document.getElementById("labour-count").value,
-                "start_date": document.getElementById("start-date").value,
-                "end_date": document.getElementById("end-date").value,
-                "start_time": document.getElementById("start-time").value,
-                "end_time": document.getElementById("end-time").value,
-                "location": document.getElementById("job-loc").value,
+                "labour_count": bookingDetails.labourCount,
+                "start_date": bookingDetails.startDate,
+                "end_date": bookingDetails.endDate,
+                "start_time": bookingDetails.startTime,
+                "end_time": bookingDetails.endTime,
+                "location": bookingDetails.jobLoc,
                 "status": "Pending",
             }),
             headers: {
@@ -78,11 +103,11 @@ const DashboardForm = () => {
             <main className="dashboard-main">
                 <div className="dashboard-container">
                     <section className="dashboard-wrapper">
-                        <span onClick={handleClick}><Link to='/dashboard'><img src={leftarrow} alt="back arrow" className='dashboard-icon-align' /></Link></span>
+                        <span onClick={handleBackArrowClick}><Link to='/dashboard'><img src={leftarrow} alt="back arrow" className='dashboard-icon-align' /></Link></span>
                         <div className="dashboard-heading">
                             <h1 className="dashboard-header-text">Job Details</h1>
                         </div>
-                        <form name="signin" className="dashboard-form">
+                        {!confirmation ? (<form name="signin" className="dashboard-form">
 
                             <div className="dashboard-input-control">
                                 <label htmlFor="job-loc" className="dashboard-input-label" >Job Location</label>
@@ -111,9 +136,17 @@ const DashboardForm = () => {
                                 </div>
                             </div>
                             <div className="dashboard-input-control btn">
-                                <input type="submit" name="submit" className="dashboard-input-submit" value="Next" id='next-btn' onClick={handleContractorDashboardForm} />
+                                <input type="submit" name="submit" className="dashboard-input-submit" value="Next" id='next-btn' onClick={handleNextClick} />
                             </div>
-                        </form>
+                        </form>) : (<div className='confirmation-card'>
+                            <h3>Job Loaction : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
+                            <h3>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
+                            <h3>Start Date : <span className='confirmation-span'>{bookingDetails.startDate || "null"}</span></h3>
+                            <h3>End Date : <span className='confirmation-span'>{bookingDetails.endDate || "null"}</span></h3>
+                            <h3>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
+                            <h3>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
+                            <button className='dashboard-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
+                        </div>)}
                     </section>
                 </div>
             </main>

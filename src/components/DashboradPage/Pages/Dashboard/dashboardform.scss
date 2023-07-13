@@ -9,7 +9,8 @@
 
 
     .dashboard-wrapper {
-        width: 32rem;
+        min-width: 21rem;
+        width: max-content;
         margin: 2rem auto;
         padding: 2rem 2.5rem;
         border: none;
