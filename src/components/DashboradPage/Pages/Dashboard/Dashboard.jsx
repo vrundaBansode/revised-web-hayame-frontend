@@ -42,9 +42,9 @@ const Dashboard = () => {
                         <p className='contractor-dashboard-p'>Pick/Pack</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Shipping" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Shipping-Receiving" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={shipping} alt="shipping" className='dashboard-img' />
-                        <p className='contractor-dashboard-p'>Shipping</p>
+                        <p className='contractor-dashboard-p'>Shipping/Receiving</p>
                       </div></Link>
 
                       <Link to="/dashboard/dashboardform?skill=Lumper" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
@@ -83,14 +83,14 @@ const Dashboard = () => {
                         <p className='contractor-dashboard-p'>Labour</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Set Up" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Set up-Tear down" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={setup} alt="setup" className='dashboard-img' />
-                        <p className='contractor-dashboard-p'>Set Up</p>
+                        <p className='contractor-dashboard-p'>Set up/Tear down</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Cook" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Cook-Assistant Cook" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={cook} alt="cook" className='dashboard-img' />
-                        <p className='contractor-dashboard-p'>Cook</p>
+                        <p className='contractor-dashboard-p'>Cook/Assistant Cook</p>
                       </div></Link>
                     </div>
                   </div><hr className='contractor-dashboard-hr'/>
@@ -116,14 +116,14 @@ const Dashboard = () => {
                         <p className='contractor-dashboard-p'>Server</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Set Up" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Set up-Tear down" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={setup} alt="setup" className='dashboard-img' />
-                        <p className='contractor-dashboard-p'>Set Up</p>
+                        <p className='contractor-dashboard-p'>Set up/Tear down</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Cook" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Cook-Assistant Cook" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={cook} alt="cook" className='dashboard-img' />
-                        <p className='contractor-dashboard-p'>Cook</p>
+                        <p className='contractor-dashboard-p'>Cook/Assistant Cook</p>
                       </div></Link>
                     </div>
                   </div><hr className='contractor-dashboard-hr'/>
@@ -183,9 +183,9 @@ const Dashboard = () => {
                         <p className='contractor-dashboard-p'>Workers</p>
                       </div></Link>
 
-                      <Link to="/dashboard/dashboardform?skill=Set Up" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
+                      <Link to="/dashboard/dashboardform?skill=Set up-Tear down" className='dashboard-a'><div className="filter-item" onClick={handleClick}>
                         <img src={setup} alt="setup" className='dashboard-img'/>
-                        <p className='contractor-dashboard-p'>Set Up</p>
+                        <p className='contractor-dashboard-p'>Set up/Tear down</p>
                       </div></Link>
                     </div>
                   </div>
