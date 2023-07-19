@@ -141,7 +141,7 @@ const Customers = () => {
                     document.getElementById('contractor-startTime').innerText=json[0]['start_time']
                     document.getElementById('contractor-endTime').innerText=json[0]['end_time']
                     document.getElementById('contractor-location').innerText=json[0]['location']
-                    // document.getElementById('totalPayment').innerText=json[0]['']
+                    document.getElementById('contractor-totalPayment').innerText=json[0]['amount']
                     
                 })
 
@@ -223,7 +223,7 @@ const Customers = () => {
           "startDate": td[i]['start_date'],
           "labourSkills": td[i]['labour_skill'],
           "status": td[i]['status'],
-          "payment": "$ 100",
+          "payment": td[i]['amount'],
           "action": "Details",
         });
       }
@@ -268,7 +268,7 @@ const DetailsCard = () => {
         <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>End Time: <span className='detailsCard-span' id='contractor-endTime'>18:00</span></p>
       </div>
       <p className='detailsCard-p'  style={{ marginTop: "0" }}>Location: <span className='detailsCard-span' id='contractor-location'>New Jersey</span></p>
-      <p className='detailsCard-p' id='contractor-totalPayment'>Payment: $100</p>
+      <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>100</span></p>
     </div>
   )
 }

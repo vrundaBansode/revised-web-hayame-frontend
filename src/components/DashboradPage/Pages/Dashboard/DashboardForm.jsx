@@ -8,13 +8,50 @@ import { Link, useNavigate } from "react-router-dom"
 
 const DashboardForm = () => {
 
+    let paramString = (window.location.search).split('?')[1];
+    let queryString = new URLSearchParams(paramString);
+    let skill = ""
+    for (let pair of queryString.entries()) {
+        skill = pair[1]
+    }
+    let skill_frontend = skill.replace("-", "/");
+    let totalCost = 0;
+
+    // const [costDetails, setCostDetails] = useState({})
+    let costDetails = {};
+
+    fetch("http://45.127.4.151:8000/api/skill-list", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Content-Type': 'application/json'
+
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                for(let i=0; i<json.length; i++){
+                    // setCostDetails(prev => ({
+                    //     json[i].skill : 
+                    // }))
+                    costDetails[json[i].skill] = json[i].cost_per_hour;
+                }
+            })
+
+
+
     const [bookingDetails, setBookingDetails] = useState({
-        jobLoc : "",
+        jobLoc: "",
         labourCount: "",
         startDate: "",
         endDate: "",
         startTime: "",
         endTime: "",
+        labourSkill: skill_frontend,
+        hours: "",
+        minutes: "",
+        costPerHour: 0,
+        totalCost: 0,
     })
 
     const [confirmation, setConfirmation] = useState(false);
@@ -40,15 +77,42 @@ const DashboardForm = () => {
     }
 
     const handleNextClick = () => {
-        setConfirmation(prev=>!prev)
+        setConfirmation(prev => !prev)
+
+        let startDate = new Date(document.getElementById("start-date").value);
+        let endDate = new Date(document.getElementById("end-date").value);
+        const diffTime = Math.abs(endDate - startDate);
+        let totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+
+        let timeStr = document.getElementById("start-time").value;
+        let hour = timeStr[0] + timeStr[1];
+        let minutes = timeStr[3] + timeStr[4];
+
+        let startTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
+        timeStr = document.getElementById("end-time").value;
+        hour = timeStr[0] + timeStr[1];
+        minutes = timeStr[3] + timeStr[4];
+        let endTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
+
+        const diffTime2 = Math.abs(startTime - endTime);
+        let totalMinutes =  Math.ceil(diffTime2 / (1000 * 60)) * totalDays; 
+
+        const costPerMin = costDetails[skill]/60;
+        totalCost = costPerMin * totalMinutes * parseInt(document.getElementById("labour-count").value);
+
 
         setBookingDetails({
-            jobLoc : document.getElementById("job-loc").value,
-            labourCount : document.getElementById("labour-count").value,
-            startDate : document.getElementById("start-date").value,
-            endDate : document.getElementById("end-date").value,
-            startTime : document.getElementById("start-time").value,
-            endTime : document.getElementById("end-time").value
+            jobLoc: document.getElementById("job-loc").value,
+            labourCount: document.getElementById("labour-count").value,
+            startDate: document.getElementById("start-date").value,
+            endDate: document.getElementById("end-date").value,
+            startTime: document.getElementById("start-time").value,
+            endTime: document.getElementById("end-time").value,
+            labourSkill: skill_frontend,
+            hours: Math.ceil(totalMinutes/60),
+            minutes: totalMinutes%60,
+            costPerHour: costDetails[skill],
+            totalCost: totalCost,
         })
 
     }
@@ -59,13 +123,7 @@ const DashboardForm = () => {
 
         // e.preventDefault()
 
-        let paramString = (window.location.search).split('?')[1];
-        let queryString = new URLSearchParams(paramString);
-        let skill = ""
-        for (let pair of queryString.entries()) {
-            skill = pair[1]
-        }
-        skill = skill.replace("-", "/")
+
         console.log("Handle Next Clicked")
 
         fetch("http://45.127.4.151:8000/api/booking", {
@@ -81,6 +139,7 @@ const DashboardForm = () => {
                 "end_time": bookingDetails.endTime,
                 "location": bookingDetails.jobLoc,
                 "status": "Pending",
+                "amount": bookingDetails.totalCost,
             }),
             headers: {
                 'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -140,11 +199,15 @@ const DashboardForm = () => {
                             </div>
                         </form>) : (<div className='confirmation-card'>
                             <h3>Job Loaction : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
+                            <h3>Labour Skill : <span className='confirmation-span'>{bookingDetails.labourSkill || "null"}</span></h3>
                             <h3>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
                             <h3>Start Date : <span className='confirmation-span'>{bookingDetails.startDate || "null"}</span></h3>
                             <h3>End Date : <span className='confirmation-span'>{bookingDetails.endDate || "null"}</span></h3>
                             <h3>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
                             <h3>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
+                            <h3>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
+                            <h3>Total Cost Per Hour: <span className='confirmation-span'>{bookingDetails.costPerHour}</span></h3>
+                            <h3>Total Cost: <span className='confirmation-span'>{bookingDetails.totalCost}</span></h3>
                             <button className='dashboard-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
                         </div>)}
                     </section>
