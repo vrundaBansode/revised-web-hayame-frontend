@@ -8,5 +8,18 @@ import Help from "./Inventory/Help";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import AdminWorkforceList from "./AdminWorkforceList/AddWorkforceList";
 import AdminBookings from "./AdminBookings/AdminBookings";
+import AllocateLabour from "./AllocateLabour/AllocateLabour";
 
-export { Customers, Dashboard, Inventory, Orders, Profile, TC, Help, AdminDashboard, AdminWorkforceList, AdminBookings }
+export {
+  Customers,
+  Dashboard,
+  Inventory,
+  Orders,
+  Profile,
+  TC,
+  Help,
+  AdminDashboard,
+  AdminWorkforceList,
+  AdminBookings,
+  AllocateLabour,
+};

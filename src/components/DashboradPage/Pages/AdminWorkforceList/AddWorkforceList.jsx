@@ -3,6 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import "./addWorkforceList.css"
+import { useNavigate } from 'react-router-dom';
 
 
 const AddWorkforceList = () => {
@@ -102,10 +103,14 @@ const AddWorkforceList = () => {
 
 
 
+    let navigate = useNavigate()
 
 
     const handleEditAction = (e) => {
-      console.log(e.target.parentElement.parentElement.cells[2].innerText)
+      let labourEmail = e.target.parentElement.parentElement.parentElement.cells[2].innerText
+      // console.log(labourEmail)
+      navigate("/dashboard/update-labour-details?email=" + labourEmail)
+
     }
     
     const columns = [
@@ -151,7 +156,7 @@ const AddWorkforceList = () => {
     dataIndex: 'action',
     key: 'action',
     width: '10%',
-    render: (text) => (<div><span onClick={handleEditAction} style={{ marginRight: "1rem", color: "green" }} >{text}</span></div>)
+    render: (text) => (<div><span onClick={handleEditAction} style={{ marginRight: "1rem", color: "green", cursor: "pointer" }} >{text}</span></div>)
     // ...getColumnSearchProps('payment'),
   }
   ];
