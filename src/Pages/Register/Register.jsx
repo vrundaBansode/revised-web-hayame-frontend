@@ -164,7 +164,7 @@ const Register = () => {
             // setSuccessfulSignUp(true)
             // window.location.href="/login"
             console.log(json.response);
-            navigate("/login");
+            alert("Please verify your email by clicking on the link sent through email.")
           }
         });
     } else {

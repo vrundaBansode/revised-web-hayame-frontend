@@ -177,12 +177,19 @@ const Login = () => {
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json)
-                    localStorage.setItem("email", JSON.stringify(json.email))
-                    localStorage.setItem("first_name", JSON.stringify(json.first_name))
-                    localStorage.setItem("last_name", JSON.stringify(json.last_name))
-                    localStorage.setItem("phone", JSON.stringify(json.phone))
-                    localStorage.setItem("user_role", JSON.stringify(json.user_role))
-                    navigate("/dashboard")
+                    if(json.is_verified == true){
+                        localStorage.setItem("email", JSON.stringify(json.email))
+                        localStorage.setItem("first_name", JSON.stringify(json.first_name))
+                        localStorage.setItem("last_name", JSON.stringify(json.last_name))
+                        localStorage.setItem("phone", JSON.stringify(json.phone))
+                        localStorage.setItem("user_role", JSON.stringify(json.user_role))
+                        navigate("/dashboard")
+                    }
+                    else{
+                        alert("Please verify your email address before trying to Log in.")
+                        navigate("/login")
+                    }
+                    
                 })
 
                 loginNotification("Login Successful!")
