@@ -4,7 +4,7 @@ import "./allocateLabour.css";
 const AllocateLabour = () => {
   return (
     <div>
-      <h1>AllocateLabour</h1>
+      <h1 style={{ textAlign: "left" }}>AllocateLabour</h1>
     </div>
   );
 };

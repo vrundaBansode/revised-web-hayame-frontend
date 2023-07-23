@@ -18,6 +18,7 @@ import {
 import DashboardForm from "./components/DashboradPage/Pages/Dashboard/DashboardForm";
 import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
 import AllocateLabour from "./components/DashboradPage/Pages/AllocateLabour/AllocateLabour";
+import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 
 function App() {
   // const [loggedIn, setloggedIn] = useState(false)
@@ -38,6 +39,10 @@ function App() {
     {
       path: "/about-us",
       element: <About />,
+    },
+    {
+      path: "/verify-user",
+      element: <VerifyUser />,
     },
     {
       path: "/dashboard",
