@@ -1,7 +1,7 @@
 import React from 'react'
 import "./hero.css"
 import { Routes, Route } from "react-router-dom"
-import { Dashboard, Inventory, Orders, Customers, Profile, AdminDashboard, AdminWorkforceList, AdminBookings } from '../../Pages'
+import { Dashboard, Customers, Profile, AdminDashboard, AdminWorkforceList, AdminBookings, AllocateLabours } from '../../Pages'
 import DashboardForm from '../../Pages/Dashboard/DashboardForm'
 import UpdateLabourDetails from '../../Pages/UpdatelabourDetails/UpdateLabourDetails'
 
@@ -13,8 +13,6 @@ const Hero = ({ userRole }) => {
     <div className='DashboardHero'>
       { userRole==='"Contractor"' ? (<Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/customers" element={<Customers />} />
@@ -25,6 +23,7 @@ const Hero = ({ userRole }) => {
         <Route path='/check-bookings' element={<AdminBookings />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/update-labour-details' element={<UpdateLabourDetails />} />
+        <Route path='/allocate-labours' element={<AllocateLabours />} />
       </Routes>)}
     </div>
   )

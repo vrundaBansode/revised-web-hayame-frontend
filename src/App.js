@@ -6,18 +6,15 @@ import Register from "./Pages/Register/Register";
 import About from "./Pages/About/About";
 import DashboardPage from "./components/DashboradPage/DashboardPage";
 import {
-  Inventory,
   Dashboard,
   Customers,
   Profile,
-  Orders,
   AdminWorkforceList,
   AdminBookings,
-  // AllocateLabour,
+  AllocateLabours
 } from "./components/DashboradPage/Pages";
 import DashboardForm from "./components/DashboradPage/Pages/Dashboard/DashboardForm";
 import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
-import AllocateLabour from "./components/DashboradPage/Pages/AllocateLabour/AllocateLabour";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 
 function App() {
@@ -53,10 +50,6 @@ function App() {
           element: <Profile />,
         },
         {
-          path: "/dashboard/orders",
-          element: <Orders />,
-        },
-        {
           path: "/dashboard/customers",
           element: <Customers />,
         },
@@ -78,17 +71,13 @@ function App() {
         },
         {
           path: "/dashboard/allocate-labours",
-          element: <AllocateLabour />,
+          element: <AllocateLabours />,
         },
       ],
     },
     {
       path: "/dashboard/dashboard",
       element: <Dashboard />,
-    },
-    {
-      path: "/dashboard/inventory",
-      element: <Inventory />,
     },
   ]);
 
