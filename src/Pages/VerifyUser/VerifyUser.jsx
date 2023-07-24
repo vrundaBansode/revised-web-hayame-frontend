@@ -14,11 +14,11 @@ const VerifyUser = () => {
       user = pair[1]
     }
 
-    fetch("http://45.127.4.151:8000/api/verify-user/" + user, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
+    let api = "http://45.127.4.151:8000/api/verify-user/" + user;
+    console.log(api);
+
+    fetch(api, {
+      method: "GET"
     })
       .then((response) => response.json())
       .then((json) => {
@@ -28,11 +28,13 @@ const VerifyUser = () => {
 
   }
 
+  verifyUserBackend();
+
 
   return (
     <div className="verify-user-card">
       <h3>You're verified now! 🎉</h3>
-      <Link to="./login" className="login-href">
+      <Link to="/login" className="login-href">
         Login
       </Link>
     </div>
