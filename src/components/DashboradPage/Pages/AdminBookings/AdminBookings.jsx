@@ -272,8 +272,8 @@ const DetailsCard = () => {
 
   const handleAllocation = (e) => {
     // console.log(e.target.id)
-    console.log(bookingId);
-    navigate("/dashboard/allocate-labours");
+    // console.log(bookingId);
+    navigate("/dashboard/allocate-labours?booking_id=" + bookingId);
   };
 
   return (
