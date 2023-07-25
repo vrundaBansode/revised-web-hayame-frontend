@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from "react";
 import Select from 'react-select';
 
-let options = [];
-
 const AllocateLabours = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
   let paramString = window.location.search.split("?")[1];
   let queryString = new URLSearchParams(paramString);
   let booking_id = "";
@@ -13,10 +9,17 @@ const AllocateLabours = () => {
     booking_id = pair[1];
   }
 
+  let labourList = [];
   let requiredSkill = "";
+  let selectedLabours = [];
+  let cnt = 0;
 
 
   useEffect(() => {
+
+    labourList = [];
+    requiredSkill = "";
+    selectedLabours = [];
 
     fetch("http://45.127.4.151:8000/api/booking?booking_id=" + booking_id, {
       method: "GET",
@@ -67,16 +70,45 @@ const AllocateLabours = () => {
         for (let i = 0; i < json.length; i++) {
           let skills = json[i]["skills"].split(",");
           if(skills.includes(requiredSkill)){
-            options.push({value: json[i]['email'], label: `${json[i]['email']} (${json[i]['first_name']} ${json[i]['last_name']})`})
+            labourList.push(json[i]['email'] + " (" + json[i]['first_name'] + " " + json[i]['last_name'] + ")");
           }
         }
 
+        let html = "";
+        for (let k = 0; k < labourList.length; k++) {
+          html += `<option value='${labourList[k]}' >${labourList[k]}</option>`;
+        }
+        document.getElementById("allocate-labours-list").innerHTML += html;
+
+        console.log("LabourList: " + labourList);
       });
   }, []);
 
+
+  const pushLabour = () => {
+    selectedLabours.push(document.getElementById("allocate-labours-list").value);
+    console.log("SelectedLabours: " + selectedLabours);
+    loadDOM();
+  }
+
+
+  const loadDOM = () => {
+    let html = "<ul>"
+    for(let i=0; i<selectedLabours.length; i++){
+      html += `<li id='${selectedLabours[i]}-${cnt}'>${selectedLabours[i]}    <span onclick={() => deleteLabour} >X</span></li>`
+      cnt++;
+    }
+    html += "</ul>"
+    document.getElementById("allocation-selected-labours").innerHTML = html;
+  }
+
+  const deleteLabour = () => {
+    // let id = ele.parentNode.id;
+    console.log("Deleted");
+  }
+
   return (
     <div className="workforcelist-table-card">
-
       <div className="confirmation-card">
         <h3>
           Contractor Name :
@@ -158,14 +190,21 @@ const AllocateLabours = () => {
         </h3>
       </div>
 
-      <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
-        isMulti
-      />
+      <div id="allocation-workforce-list" className="allocation-workforce-list">
+        <form>
+          <label for="allocate-labours-list">Select Labours : </label>
+          <select id="allocate-labours-list" onChange={pushLabour} name="allocate-labours-list">
+            <option>Choose an option</option>
+          </select>
+        </form>
+      </div>
+
+      <div id="allocation-selected-labours"></div>
+
+      <Select value={se} />
+
     </div>
   );
-}
+};
 
 export default AllocateLabours;
