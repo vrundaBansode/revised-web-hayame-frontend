@@ -11,7 +11,7 @@ import {
   Profile,
   AdminWorkforceList,
   AdminBookings,
-  AllocateLabours
+  AllocateLabours,
 } from "./components/DashboradPage/Pages";
 import DashboardForm from "./components/DashboradPage/Pages/Dashboard/DashboardForm";
 import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";

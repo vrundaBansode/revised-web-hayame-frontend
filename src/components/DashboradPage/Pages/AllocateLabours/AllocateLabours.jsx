@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
+import "./allocateLabours.css";
 
 let options = [];
 
@@ -15,9 +16,7 @@ const AllocateLabours = () => {
 
   let requiredSkill = "";
 
-
   useEffect(() => {
-
     fetch("http://45.127.4.151:8000/api/booking?booking_id=" + booking_id, {
       method: "GET",
       headers: {
@@ -27,7 +26,6 @@ const AllocateLabours = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-
         requiredSkill = json[0]["labour_skill"];
 
         document.getElementById("allocate-labours-contractor-name").innerText =
@@ -63,96 +61,117 @@ const AllocateLabours = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-
         for (let i = 0; i < json.length; i++) {
           let skills = json[i]["skills"].split(",");
-          if(skills.includes(requiredSkill)){
-            options.push({value: json[i]['email'], label: `${json[i]['email']} (${json[i]['first_name']} ${json[i]['last_name']})`})
+          if (skills.includes(requiredSkill)) {
+            options.push({
+              value: json[i]["email"],
+              label: `${json[i]["email"]} (${json[i]["first_name"]} ${json[i]["last_name"]})`,
+            });
           }
         }
-
       });
   }, []);
 
   return (
-    <div className="workforcelist-table-card">
-
-      <div className="confirmation-card">
-        <h3>
-          Contractor Name :
+    <div className="allocate-labours-summary-card">
+      <div className="summary-card">
+        <h3 className="allocate-labours-h3">
+          Contractor Name :{" "}
           <span
             id="allocate-labours-contractor-name"
-            className="confirmation-span"
+            className="allocate-labours-summary-span"
           >
             abdcher
           </span>
         </h3>
-        <h3>
-          Contractor Email :
+        <h3 className="allocate-labours-h3">
+          Contractor Email :{" "}
           <span
             id="allocate-labours-contractor-email"
-            className="confirmation-span"
+            className="allocate-labours-summary-span"
           >
             abdcher
           </span>
         </h3>
-        <h3>
-          Labour Type :
-          <span id="allocate-labours-labour-type" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          Labour Type :{" "}
+          <span
+            id="allocate-labours-labour-type"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          Labour Count :
+        <h3 className="allocate-labours-h3">
+          Labour Count :{" "}
           <span
             id="allocate-labours-labour-count"
-            className="confirmation-span"
+            className="allocate-labours-summary-span"
           >
             abdcher
           </span>
         </h3>
-        <h3>
-          Booking Status :
+        <h3 className="allocate-labours-h3">
+          Booking Status :{" "}
           <span
             id="allocate-labours-booking-status"
-            className="confirmation-span"
+            className="allocate-labours-summary-span"
           >
             abdcher
           </span>
         </h3>
-        <h3>
-          Start Date :
-          <span id="allocate-labours-start-date" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          Start Date :{" "}
+          <span
+            id="allocate-labours-start-date"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          End Date :
-          <span id="allocate-labours-end-date" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          End Date :{" "}
+          <span
+            id="allocate-labours-end-date"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          Start Time :
-          <span id="allocate-labours-start-time" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          Start Time :{" "}
+          <span
+            id="allocate-labours-start-time"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          End Time :
-          <span id="allocate-labours-end-time" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          End Time :{" "}
+          <span
+            id="allocate-labours-end-time"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          Location :
-          <span id="allocate-labours-loc" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          Location :{" "}
+          <span
+            id="allocate-labours-loc"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
-        <h3>
-          Total Cost :
-          <span id="allocate-labours-total-cost" className="confirmation-span">
+        <h3 className="allocate-labours-h3">
+          Total Cost :{" "}
+          <span
+            id="allocate-labours-total-cost"
+            className="allocate-labours-summary-span"
+          >
             abdcher
           </span>
         </h3>
@@ -166,6 +185,6 @@ const AllocateLabours = () => {
       />
     </div>
   );
-}
+};
 
 export default AllocateLabours;
