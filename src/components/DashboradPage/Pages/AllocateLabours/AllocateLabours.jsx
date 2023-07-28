@@ -3,6 +3,7 @@ import Select from "react-select";
 import "./allocateLabours.css";
 
 let options = [];
+let labourList = [];
 
 const AllocateLabours = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -64,14 +65,44 @@ const AllocateLabours = () => {
         for (let i = 0; i < json.length; i++) {
           let skills = json[i]["skills"].split(",");
           if (skills.includes(requiredSkill)) {
-            options.push({
-              value: json[i]["email"],
-              label: `${json[i]["email"]} (${json[i]["first_name"]} ${json[i]["last_name"]})`,
-            });
+            if (labourList.includes(json[i]["email"]) == false) {
+              options.push({
+                value: json[i]["email"],
+                label: `${json[i]["email"]} (${json[i]["first_name"]} ${json[i]["last_name"]})`,
+              });
+              labourList.push(json[i]["email"]);
+            }
+
           }
         }
       });
   }, []);
+
+  const handelAllocateLabourSubmit = () => {
+    let labour_emails = "";
+    for(let i=0; i<selectedOption.length; i++){
+      labour_emails += selectedOption[i].value + ",";
+    }
+    labour_emails = labour_emails.substring(0,labour_emails.length-1);
+    
+    fetch("http://45.127.4.151:8000/api/allocate-labour", {
+            method: "POST",
+            body: JSON.stringify({
+                "booking_id": booking_id,
+                "labour_email": labour_emails,
+            }),
+            headers: {
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                alert("Labours Allocated Successfully");
+            })
+
+  }
 
   return (
     <div className="allocate-labours-summary-card">
@@ -177,12 +208,14 @@ const AllocateLabours = () => {
         </h3>
       </div>
 
-      <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
-        isMulti
-      />
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          isMulti
+        />
+        <button onClick={handelAllocateLabourSubmit}>Submit</button>
+
     </div>
   );
 };
