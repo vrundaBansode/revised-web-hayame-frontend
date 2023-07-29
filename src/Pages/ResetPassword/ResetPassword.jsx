@@ -32,7 +32,7 @@ const ResetPassword = () => {
             .then((response) => response.json())
             .then((json) => {
                 alert(json["response"])
-                navigate('./login');
+                navigate('/login');
             })
     }
 
@@ -46,7 +46,7 @@ const ResetPassword = () => {
                         <div className="reset-password-heading">
                             <h1 className="text text-large">Reset Password</h1>
                         </div>
-                        <form name="reset-password" className="reset-password-form">
+                        <div name="reset-password" className="reset-password-form">
                             <div className="reset-password-input-control">
                                 <label htmlFor="reset-password-password" className="reset-password-input-label" hidden>New Password</label>
                                 <input type="password" name="reset-password-password" id="reset-password-password" className="reset-password-input-field" placeholder="New Password" />
@@ -59,7 +59,7 @@ const ResetPassword = () => {
                             <div>
                                 <button type="submit" name="reset-password" className="reset-password-input-submit" style={{ "width": "150px" }} id='reset-password-btn' onClick={handleResetPassword}>Reset Password</button>
                             </div>
-                        </form>
+                        </div>
                     </section>
                 </div>
             </div>

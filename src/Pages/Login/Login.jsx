@@ -194,8 +194,6 @@ const Login = () => {
                     
                 })
 
-                
-
             }else{
                 // alert('Wrong username or password')
                 loginNotification("Wrong username or password")
@@ -228,7 +226,7 @@ const Login = () => {
                             <input type="password" name="login-password" id="login-password" className="login-input-field" placeholder="Password" />
                         </div>
                         <div className="login-input-control" style={{ "display": "flex", "justifyContent": "space-between", "flexDirection": "row", marginTop: "3rem" }}>
-                            <div><a href="/" className="text text-links">Forgot Password</a></div>
+                            <div><Link to="/forgot-password" className="text text-links">Forgot Password</Link></div>
                             <div>
                                 {/* <input type="submit" name="login" className="input-submit" style={{ "width": "150px" }} value="Login" onClick={handleLogin} /> */}
                                 <button type="submit" name="login" className="login-input-submit" style={{ "width": "150px" }} id='login-btn' onClick={handleLogin}><a href="/dashboard" >Login</a></button>

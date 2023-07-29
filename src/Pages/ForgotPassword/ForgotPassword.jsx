@@ -37,17 +37,17 @@ const ForgotPassword = () => {
                         <div className="forgot-password-heading">
                             <h1 className="text text-large">Forgot Password</h1>
                         </div>
-                        <form name="forgot-password" className="forgot-password-form">
+                        <div name="forgot-password" className="forgot-password-form">
                             <div className="forgot-password-input-control">
                                 <label htmlFor="forgot-password-username" className="forgot-password-input-label" hidden>Registered Email Address</label>
                                 <input type="email" name="forgot-password-username" id="forgot-password-username" className="forgot-password-input-field" placeholder="Email Address" />
                             </div>
 
                             <div>
-                                <button type="submit" name="forgot-password" className="forgot-password-input-submit" style={{ "width": "150px" }} id='forgot-password-btn' onClick={handleForgetPassword}>Reset Password</button>
+                                <button name="forgot-password" className="forgot-password-input-submit" style={{ "width": "150px" }} id='forgot-password-btn' onClick={handleForgetPassword}>Reset Password</button>
                             </div>
 
-                        </form>
+                        </div>
                     </section>
                 </div>
             </div>
