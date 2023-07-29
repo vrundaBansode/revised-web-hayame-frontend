@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import "./admindashboard.css"
+import Select from "react-select";
 import { Link, useNavigate } from "react-router-dom"
+
+let options = [];
+let opt = [];
 
 const AdminDashboard = () => {
 
-    const [options, setOptions] = useState([])
+    const [selectedOption, setSelectedOption] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
 
-        const fillOptions = async () => {
+        fetch("http://45.127.4.151:8000/api/skill-list", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                "Content-type": "application/json"
+            }
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                for (let i = 0; i < json.length; i++) {
+                    if (opt.includes(json[i]['skill']) == false) {
+                        opt.push(json[i]['skill']);
+                        options.push({
+                            value: json[i]['skill'],
+                            label: json[i]['skill']
+                        })
+                    }
 
-            const opt = []
-
-            const response = await fetch("http://45.127.4.151:8000/api/skill-list", {
-                method: "GET",
-                headers: {
-                    'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-                    "Content-type": "application/json"
                 }
             })
-            const data = await response.json()
 
-            for (let i = 0; i < data.length; i++) {
-                opt.push(data[i]['skill'])
-            }
-
-            setOptions(opt)
-
-        }
-
-        fillOptions()
 
     }, [])
 
@@ -39,16 +42,13 @@ const AdminDashboard = () => {
 
         document.getElementById("add-btn").disabled = true
 
-        console.log(options);
+        console.log(selectedOption);
 
         let skills = "";
-        for (let i = 0; i < options.length; i++) {
-            let id = "labour-skill-" + options[i];
-            if (document.getElementById(id).checked == true) {
-                skills += options[i];
-                skills += ',';
-                console.log(options[i]);
-            }
+        for (let i = 0; i < selectedOption.length; i++) {
+            skills += selectedOption[i]['value'];
+            skills += ',';
+            console.log(selectedOption[i]['value']);
         }
 
         skills = skills.substring(0, skills.length - 1);
@@ -61,6 +61,7 @@ const AdminDashboard = () => {
                 "first_name": document.getElementById("labour-firstName").value,
                 "last_name": document.getElementById("labour-lastName").value,
                 "email": document.getElementById("labour-email").value,
+                "gender": document.getElementById("labour-gender").value,
                 "phone": document.getElementById("labour-phone-number").value,
                 "skills": skills,
                 "passport_no": document.getElementById("labour-passport-no").value,
@@ -77,9 +78,6 @@ const AdminDashboard = () => {
                 navigate('/dashboard/workforce-list');
             }
             );
-
-        
-
 
     }
 
@@ -105,18 +103,27 @@ const AdminDashboard = () => {
                     <input type="email" name="labour-email" id="labour-email" required className="admin-dashboard-labour-input-field" placeholder="Email Address" />
                 </div>
                 <div className="admin-dashboard-labour-input-control">
+                    <label htmlFor="labour-gender" className="admin-dashboard-labour-input-label" >Gender</label>
+                    <select name="labour-gender" id="labour-gender" className="admin-dashboard-labour-input-field">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div className="admin-dashboard-labour-input-control">
                     <label htmlFor="labour-passport-no" className="admin-dashboard-labour-input-label" >Passport Number</label>
                     <input type="email" name="labour-passport-no" id="labour-passport-no" required className="admin-dashboard-labour-input-field" placeholder="Enter Passport Number" />
                 </div>
-                <div className="admin-dashboard-labour-input-control">
-                    <label htmlFor="labour-skill" className="admin-dashboard-labour-input-label" >Skills</label>
-                    <div className='checkboxes'>
-                        {options.map(opt => (<div><input type="checkbox" id={`labour-skill-${opt}`} value={opt} name={`labour-skill-${opt}`} /><label for={`labour-skill-${opt}`}>{opt}</label></div>))}
-                    </div>
-                    <div id="selected-skills">
 
-                    </div>
+                <div className='admin-dashboard-labour-input-control'>
+                    <label htmlFor="labour-skill" className="admin-dashboard-labour-input-label" >Skills</label>
+                    <Select
+                        defaultValue={selectedOption}
+                        onChange={setSelectedOption}
+                        options={options}
+                        isMulti
+                    />
                 </div>
+
                 <div className="admin-dashboard-labour-input-control">
                     <label htmlFor="number" className="admin-dashboard-labour-input-label" >Phone Number</label>
                     <input type="tel" name="number" id="labour-phone-number" required className="admin-dashboard-labour-input-field" placeholder="Enter your Phone Number" />
