@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import "./dashboardform.scss"
 import Dashboard from "./Dashboard"
 import { leftarrow } from '../../../../assets'
@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 
 const DashboardForm = () => {
+
 
     let paramString = (window.location.search).split('?')[1];
     let queryString = new URLSearchParams(paramString);
@@ -19,30 +20,34 @@ const DashboardForm = () => {
 
     // const [costDetails, setCostDetails] = useState({})
     let costDetails = {};
+    let costDetailsPublicHolidays = {};
 
     fetch("http://45.127.4.151:8000/api/skill-list", {
-            method: "GET",
-            headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-                'Content-Type': 'application/json'
+        method: "GET",
+        headers: {
+            'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+            'Content-Type': 'application/json'
 
-            },
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => {
+            for (let i = 0; i < json.length; i++) {
+                // setCostDetails(prev => ({
+                //     json[i].skill : 
+                // }))
+                costDetails[json[i].skill] = json[i].cost_per_hour_normal_days;
+                costDetailsPublicHolidays[json[i].skill] = json[i].cost_per_hour_public_holiday;
+            }
         })
-            .then((response) => response.json())
-            .then((json) => {
-                for(let i=0; i<json.length; i++){
-                    // setCostDetails(prev => ({
-                    //     json[i].skill : 
-                    // }))
-                    costDetails[json[i].skill] = json[i].cost_per_hour;
-                }
-            })
+
 
 
 
     const [bookingDetails, setBookingDetails] = useState({
         jobLoc: "",
         labourCount: "",
+        labourGender: "",
         startDate: "",
         endDate: "",
         startTime: "",
@@ -50,7 +55,9 @@ const DashboardForm = () => {
         labourSkill: skill_frontend,
         hours: "",
         minutes: "",
-        costPerHour: 0,
+        publilcHolidays: "",
+        costPerHourNormalDays: 0,
+        costPerHourPublicHolidays: 0,
         totalCost: 0,
     })
 
@@ -76,44 +83,78 @@ const DashboardForm = () => {
         )
     }
 
+
     const handleNextClick = () => {
         setConfirmation(prev => !prev)
 
-        let startDate = new Date(document.getElementById("start-date").value);
-        let endDate = new Date(document.getElementById("end-date").value);
+        let start_time = document.getElementById("start-time").value;
+        let end_time = document.getElementById("end-time").value;
+        let labourCount = document.getElementById("labour-count").value;
+        let jobLocation = document.getElementById("job-loc").value;
+        let labourGender = document.getElementById("labour-gender").value;
+        let start_date = document.getElementById("start-date").value;
+        let end_date = document.getElementById("end-date").value
+
+        let startDate = new Date(start_date);
+        let endDate = new Date(end_date);
         const diffTime = Math.abs(endDate - startDate);
-        let totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+        let totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-        let timeStr = document.getElementById("start-time").value;
-        let hour = timeStr[0] + timeStr[1];
-        let minutes = timeStr[3] + timeStr[4];
-
-        let startTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
-        timeStr = document.getElementById("end-time").value;
-        hour = timeStr[0] + timeStr[1];
-        minutes = timeStr[3] + timeStr[4];
-        let endTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
-
-        const diffTime2 = Math.abs(startTime - endTime);
-        let totalMinutes =  Math.ceil(diffTime2 / (1000 * 60)) * totalDays; 
-
-        const costPerMin = costDetails[skill]/60;
-        totalCost = costPerMin * totalMinutes * parseInt(document.getElementById("labour-count").value);
-
-
-        setBookingDetails({
-            jobLoc: document.getElementById("job-loc").value,
-            labourCount: document.getElementById("labour-count").value,
-            startDate: document.getElementById("start-date").value,
-            endDate: document.getElementById("end-date").value,
-            startTime: document.getElementById("start-time").value,
-            endTime: document.getElementById("end-time").value,
-            labourSkill: skill_frontend,
-            hours: Math.ceil(totalMinutes/60),
-            minutes: totalMinutes%60,
-            costPerHour: costDetails[skill],
-            totalCost: totalCost,
+        // get the public hoildays
+        let publilcHolidays = 0;
+        fetch("http://45.127.4.151:8000/api/public-holidays", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Content-Type': 'application/json'
+            },
         })
+            .then((response) => response.json())
+            .then((json) => {
+                for (let i = 0; i < json.length; i++) {
+                    let dt = new Date(json[i]['date']);
+                    if (dt >= startDate && dt <= endDate) {
+                        publilcHolidays++;
+                    }
+                }
+                totalDays -= publilcHolidays;
+                let timeStr = start_time;
+                let hour = timeStr[0] + timeStr[1];
+                let minutes = timeStr[3] + timeStr[4];
+
+                let startTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
+                timeStr = end_time;
+                hour = timeStr[0] + timeStr[1];
+                minutes = timeStr[3] + timeStr[4];
+                let endTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
+
+                const diffTime2 = Math.abs(startTime - endTime);
+                let totalMinutesOneDay = Math.ceil(diffTime2 / (1000 * 60));
+
+                const costPerMinNormalDays = costDetails[skill] / 60;
+                const costPerMinPublicHoliday = costDetailsPublicHolidays[skill] / 60;
+
+                totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount);
+                // totalCost = costPerMin * totalMinutes * parseInt(document.getElementById("labour-count").value);
+
+
+                setBookingDetails({
+                    jobLoc: jobLocation,
+                    labourCount: labourCount,
+                    labourGender: labourGender,
+                    startDate: start_date,
+                    endDate: end_date,
+                    startTime: start_time,
+                    endTime: end_time,
+                    labourSkill: skill_frontend,
+                    hours: Math.ceil((totalMinutesOneDay * (totalDays + publilcHolidays)) / 60),
+                    minutes: ((totalMinutesOneDay * (totalDays + publilcHolidays)) % 60),
+                    publilcHolidays: publilcHolidays,
+                    costPerHourNormalDays: costDetails[skill],
+                    costPerHourPublicHolidays: costDetailsPublicHolidays[skill],
+                    totalCost: totalCost,
+                })
+            })
 
     }
 
@@ -252,7 +293,7 @@ const DashboardForm = () => {
                                 <div className="dashboard-input-control">
                                     <label htmlFor="end-time" className="dashboard-input-label" >End Time</label>
                                     <select name="end-time" id="end-time" className="contractor-dashboardform-input-field">
-                                    <option value="00:00">00:00</option>
+                                        <option value="00:00">00:00</option>
                                         <option value="00:30">00:30</option>
                                         <option value="01:00">01:00</option>
                                         <option value="01:30">01:30</option>
@@ -308,15 +349,18 @@ const DashboardForm = () => {
                                 <input type="submit" name="submit" className="dashboard-input-submit" value="Next" id='next-btn' onClick={handleNextClick} />
                             </div>
                         </form>) : (<div className='confirmation-card'>
-                            <h3>Job Loaction : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
+                            <h3>Job Location : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
                             <h3>Labour Skill : <span className='confirmation-span'>{bookingDetails.labourSkill || "null"}</span></h3>
                             <h3>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
+                            <h3>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3>
                             <h3>Start Date : <span className='confirmation-span'>{bookingDetails.startDate || "null"}</span></h3>
                             <h3>End Date : <span className='confirmation-span'>{bookingDetails.endDate || "null"}</span></h3>
                             <h3>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
                             <h3>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
                             <h3>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
-                            <h3>Total Cost Per Hour: <span className='confirmation-span'>{bookingDetails.costPerHour}</span></h3>
+                            <h3>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3>
+                            <h3>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>{bookingDetails.costPerHourNormalDays}</span></h3>
+                            <h3>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>{bookingDetails.costPerHourPublicHolidays}</span></h3>
                             <h3>Total Cost: <span className='confirmation-span'>{bookingDetails.totalCost}</span></h3>
                             <button className='dashboard-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
                         </div>)}
