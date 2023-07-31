@@ -150,7 +150,7 @@ const AdminBookings = () => {
           json[0]["end_time"];
         document.getElementById("admin-bookings-location").innerText =
           json[0]["location"];
-        // document.getElementById('totalPayment').innerText=json[0]['']
+        document.getElementById("admin-bookings-totalPayment").innerText=json[0]["amount"]
       });
   };
 
@@ -227,7 +227,7 @@ const AdminBookings = () => {
     let d = [];
 
     const fillTable = async () => {
-      const response = await fetch("http://45.127.4.151:8000/api/booking", {
+      const response = await fetch("http://45.127.4.151:8000/api/booking?status=Pending", {
         headers: {
           Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
           "Content-Type": "application/json",

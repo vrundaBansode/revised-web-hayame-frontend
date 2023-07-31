@@ -81,7 +81,7 @@ const Sidebar = ({ userRole }) => {
                   },
                   {
                     label: "Logout",
-                    key: "/login",
+                    key: "/logout",
                     // icon: <ShopOutlined />
                   }
                 ],
@@ -164,7 +164,7 @@ const Sidebar = ({ userRole }) => {
                   // },
                   {
                     label: "Logout",
-                    key: "/login",
+                    key: "/logout",
                     // icon: <ShopOutlined />
                   }
                 ],

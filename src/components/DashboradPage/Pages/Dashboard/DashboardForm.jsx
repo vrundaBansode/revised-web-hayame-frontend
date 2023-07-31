@@ -160,13 +160,6 @@ const DashboardForm = () => {
 
     const handleConfirmation = () => {
 
-        // document.getElementById("next-btn").disabled = true
-
-        // e.preventDefault()
-
-
-        console.log("Handle Next Clicked")
-
         fetch("http://45.127.4.151:8000/api/booking", {
             method: "POST",
             body: JSON.stringify({
@@ -174,6 +167,7 @@ const DashboardForm = () => {
                 "contractor_email": JSON.parse(localStorage.getItem("email")),
                 "labour_skill": skill,
                 "labour_count": bookingDetails.labourCount,
+                "labour_gender": bookingDetails.labourGender, 
                 "start_date": bookingDetails.startDate,
                 "end_date": bookingDetails.endDate,
                 "start_time": bookingDetails.startTime,
@@ -190,7 +184,6 @@ const DashboardForm = () => {
         })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json)
                 alert("Booking Done");
                 navigate('/dashboard/customers');
             })

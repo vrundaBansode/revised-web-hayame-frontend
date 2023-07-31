@@ -8,12 +8,6 @@ import {Navbar} from '../../components/LandingPage/components';
 
 const Login = () => {
 
-    const logout = () => {
-        localStorage.clear();
-    }
-
-    logout();
-
     let navigate = useNavigate();
 
     const loginNotification = (msg) => toast(msg) ;

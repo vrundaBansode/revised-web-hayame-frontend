@@ -4,6 +4,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import About from "./Pages/About/About";
+import Logout from "./Pages/Logout/Logout";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import DashboardPage from "./components/DashboradPage/DashboardPage";
@@ -34,6 +35,10 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/logout",
+      element: <Logout />,
     },
     {
       path: "/forgot-password",
