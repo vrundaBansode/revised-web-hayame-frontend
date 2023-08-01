@@ -4,42 +4,64 @@
     align-items: center;
     padding: 2rem;
     font-style: "Poppins", sans-serif;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
 .sect1-content {
     text-align: center;
     width: 50rem;
     font-family: inherit;
+    margin-bottom: 2rem;
 }
 
 .sect1-content h3 {
-    /* width: 50rem; */
-    font-weight: 700;
-    font-size: 56px;
+    font-weight: 900;
+    font-size: 3.25rem;
     line-height: 140%;
     letter-spacing: 0.01em;
-    color: #212427;
-    margin: 0;
+    color: #17262B;
+    margin: 3rem 0 0 0;
     padding-bottom: 2rem;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);;
 }
 
 .sect1-content p {
-    font-weight: 500;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 1.35rem;
     line-height: 140%;
     text-align: center;
     letter-spacing: 0.01em;
-    color: #606671;
+    color: #174447;
     width: 50rem;
     margin: 0;
 }
 
-.sect1-btn {
-    position: relative;
-    left: 0;
-    margin: 2rem;
-    background-color: #212427;
-    color: white;
+.hero-about-us-card {
+    background-color: #7fe8e5;
+    /* opacity: 50%; */
+    margin: 4rem 0 2rem 0;
+    text-align: center;
+    border-radius: 2rem;
+    padding: 1rem;
+    box-shadow: 0px 4px 10px  rgba(0, 0, 0, 0.25);
+    width: 70%;
+}
+
+.hero-about-us-card >article > h3 {
+    color: #17262B;
+    opacity: 100%;
+    font-weight: 900;
+    font-size: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-about-us-card > article > p {
+    padding: 0 2rem;
+    font-size: 1.20rem;
+    /* width: 60%; */
+
 }
 
 

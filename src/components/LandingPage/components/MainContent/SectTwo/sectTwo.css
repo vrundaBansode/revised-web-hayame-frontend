@@ -1,18 +1,27 @@
 .sect2-div {
+    padding: 3rem;
+    background-image: url("../../../../../assets/im.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 170vh; /*86rem*/
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 3rem;
+    align-items: center; 
 }
 
 .sect2-card {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
+
 .grid img {
-    width: 40rem;
-    margin-right: 8rem;
+    width: 55rem;
+    margin-right: 10rem;
+    display: inline-block;
+    position: relative;
+    top: 40%;
+
 }
 
 /* h4, p{
@@ -20,17 +29,19 @@
 } */
 
 .sect2-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    width: 35%;
+    display: grid;
+    grid-template-columns: 90%;
+    grid-template-rows: 30% 30% 30%;
+    row-gap: 3rem;
 }
 
 .sect2-content-title {
-    font-weight: 600;
-    font-size: 32px;
+    font-weight: 400;
+    font-size: 2.5rem;
     line-height: 140%;    
     letter-spacing: 0.01em;
-    color: #212427;
+    color: #A2F1FB;
     margin-bottom: 0;
 }
 
@@ -39,7 +50,7 @@
     font-size: 19px;
     line-height: 140%;
     letter-spacing: 0.01em;
-    color: #606671;
+    color: #e9eff8;
     width: 22rem;
 }
 

@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 0 0 2rem 0;
+    margin-top: 0;
 }
 
 .sect3-card {
@@ -11,44 +12,42 @@
 
 .work-card {
     display: flex;
-    justify-content: space-around;
-}
-
-.sect3-header {
-    font-weight: 900;
-    font-size: 3rem;
-    line-height: 140%;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #212427;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .steps-card {
-    background-color: #FFF8D1;
     margin: 1rem 2rem;
     border-radius: 20px;
     padding: 1rem 1.5rem;
+    color: #17262B;
+    width: 20%;
+}
+
+.steps-card > img {
+    transform: scale(1.25);
 }
 
 .card-title {
     margin: 15px 0;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 2rem;
     line-height: 140%;
     text-align: center;
     letter-spacing: 0.01em;
-    color: #606671;
 }
 
 .card-para {
     width: 18rem;
     margin: 0;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1.15rem;
     line-height: 140%;
     text-align: center;
     letter-spacing: 0.01em;
-    color: #000000;
+    color: #34AFAA;
+    margin: auto;
 }
 
 

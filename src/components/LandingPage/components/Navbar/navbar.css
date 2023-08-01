@@ -2,16 +2,11 @@
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
-    background-color: #FFD000;
+    background-color: #34AFAA;
     font-size: 17px;
     width: 100vw;
     box-sizing: border-box;
-}
-
-.navbar-logo {
-    position: "relative";
-    top: "27%";
-    left: "20%";
+    color: #17262B;
 }
 
 .navbar-pages {
@@ -30,9 +25,10 @@
     font-weight: 200;
 }
 
-.logo {
+.navbar-logo {
     /* border: 1px solid rebeccapurple; */
     padding: 0.75rem 0 0 1rem ;
+    margin-left: 3rem;
 }
 
 .pages-links:hover{
