@@ -24,10 +24,6 @@
 
 }
 
-/* h4, p{
-    width: 400px;
-} */
-
 .sect2-content {
     width: 35%;
     display: grid;
@@ -59,35 +55,46 @@
     .sect2-div {
         width: 100vw;
         box-sizing: border-box;
-    }
-
-    .sect2-card {
+        padding: 1.5rem;
+        height: fit-content;
+        /*86rem*/
         display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        margin-top: -2rem;
-    }
-
-    .grid {
-        display: flex;
+        justify-content: center;
         align-items: center;
     }
 
+    .sect2-card {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
     .grid img {
-        width: 100%;;
+        width: 90%;
+        margin-right: 0rem;
+        display: inline-block;
+        position: relative;
+        top: 46%;
+        left: 0%;
     }
 
     .sect2-content {
-        width: min-content;
+        width: 120%;
+        row-gap: 0.5rem;
+        margin-bottom: 3rem;
     }
 
     .sect2-content-title {
-        font-size: 10px;
-        width: 7rem
+        font-size: 0.6rem;
+        font-weight: 400;
+        width: 100%;
     }
 
     .sect2-content-para {
-        font-size: 7px;
-        width: 8rem;
+        font-size: 0.4rem;
+        font-weight: 200;
+        width: 100%
     }
 }

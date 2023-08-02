@@ -72,35 +72,46 @@
         box-sizing: border-box;
         margin-top: 0px;
         margin-bottom: 0rem;
+        padding: 1.35rem;
+
     }
 
     .sect1-content {
         width: 100vw;
-
     }
 
     .sect1-content h3 {
         font-size: 1rem;
         text-align: center;
-        width: 60%;
+        width: 70%;
         display: flex;
-        margin: 0 auto
+        margin: 0 auto;
     }
 
     .sect1-content p {
         font-size: 0.5rem;
-        margin-top: -1rem;
+        margin-top: -1.5rem;
         width: fit-content;
     }
 
-    .sect1-btn {
-        padding: 0.5rem 0.75rem;
-        font-size: 8px;
-        border-style: none;
-        border-radius: 0.5rem;
-        font-weight: 400;
-        margin-top: 1rem;
-        margin-bottom: 0rem;
-        font-style: "Poppins", sans-serif;
+    .hero-about-us-card {
+        width: 100%;
+        padding: 0rem;
+        margin: 0;
+        text-align: center;
+        border-radius: 1.3rem;
+
+    }
+
+    .hero-about-us-card > article > h3 {
+        font-size: 1.25rem;
+        font-weight: 900;
+        margin-bottom: 0;
+    }
+
+    .hero-about-us-card > article > p {
+        font-size: 0.45rem;
+        line-height: 140%;
+        margin-top: 0.25rem;
     }
 }

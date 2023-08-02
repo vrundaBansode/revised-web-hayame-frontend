@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: linear-gradient(to bottom, sandybrown, chocolate); */
     height: 50px;
     position: relative;
     margin-bottom: 20px;
@@ -31,25 +30,26 @@
 }
 
 .hero-div {
-    width: 100%;
+    width: 100vw;
     margin: 0;
     padding: 1rem 0;
     background-color: #34AFAA;
     color: #17262B;
-    box-sizing: border-box;
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .hero-card-bg {
 
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .hero-card {
@@ -81,53 +81,73 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.hero-card-img{
+    width: fit-content;
+    height: fit-content;
+}
+
+.hero-card-img > img {
+    transform: scale(1);
+}
+
 
 
 @media screen and (max-width: 820px) and (min-width: 320px) {
-    .bg-img {
-        width: 100vw;
-        background-size: contain;
-        height: 35vh;
+
+    .wave::before{
+        height: 5px;
+        background-size: 10px 10px;
+        background-image: radial-gradient(circle at 5px -2.5px, transparent 6px, #E9EBF8 6.5px);
     }
 
-    .hero-btn {
-        font-size: 0.5rem;
-        padding: 0.5rem 0.75rem;
-        position: relative;
-        top: 3%;
-        left: 75%;
-        color: white;
-        border-radius: 0.5rem;
+    .wave::after {
+        height: 7.5px;
+        background-size: 20px 10px;
+        background-image: radial-gradient(circle at 5px 7.5px, #E9EBF8 6px, transparent 6.5px);
+    }
+    
+
+     .hero-div {
+        width: 100vw;
+        box-sizing: border-box;
+        height: min-content;
+        margin-top: 0;
     }
 
     .hero-card-bg{
-        width: 40%;
-        height: fit-content;
-        padding: 0rem 0.5rem 0 0;
-        position: absolute;
-        top: 21%;
-        left: 12%;
+        width: 100vw;
+        padding: 0;
+
     }
 
     .hero-card {
-        width: max-content;
-        padding: 0;
+        width: 40vw;
         margin-left: 0;
     }
 
     .hero-card h1 {
-        font-size: 17px;
-        width: 32%;
-    }
-
-    .hero-card h1 span {
-        display: inline;
+        font-size: 1rem;
+        line-height: 100%;
+        letter-spacing: 0;
+        width: 100%;
     }
 
     .hero-card p {
-        width: 30%;
-        font-size: 8px;
-        margin-top: 0.2rem;
+        font-size: 0.5rem;
+        line-height: 100%;
+        letter-spacing: 0;
+        width: 100%;
     }
+
+    .hero-card-img{
+        width: 34vw;
+        height: min-content;
+        padding: 0;
+        margin-right: 1rem;
+    }
+
+    .hero-card-img > img{
+        width: 100%;
+    } 
 }
 

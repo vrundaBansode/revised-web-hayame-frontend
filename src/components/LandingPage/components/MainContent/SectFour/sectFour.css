@@ -36,10 +36,9 @@
     }
 
     .sect4-title {
-        font-size: 17px;
-        width: 100%;
-        display: flex;
-        margin: auto;
+        font-size: 0.75rem;
+        text-align: center;
+        margin: 1rem 0;
     }
 
     .sect4-table {

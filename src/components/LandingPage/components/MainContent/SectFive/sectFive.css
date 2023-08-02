@@ -50,32 +50,27 @@
     }
 
     .sect5-card {
-        width: min-content;
+        /* width: min-content; */
+        width: 100%;
     }
 
     .sect5-title {
-        font-size: 17px;
+        font-size: 1.2rem;
         margin-bottom: 0.5rem;
+        width: 100%;
+        margin-top: 0rem;
     }
 
     .sect5-content {
-            font-size: 9px;
-            width: 24%;
-            position: relative;
-            left: 0;
-            display: flex;
-            margin: 0.5rem auto;
+        font-size: 0.5rem;
+        width: 100%;
+        margin: 0;
     }
 
     .sect5-btn {
-        color: white;
-        background-color: #212427;
-        padding: 0.5rem 0.75rem;
-        border-style: none;
+        padding: 0.35rem 0.75rem;
         border-radius: 0.5rem;
-        font-size: 10px;
-        font-family: 'Poppins';
-        margin-bottom: 0rem;
-        margin-top: 0.75rem;
+        font-size: 0.5rem;
+        margin: 1rem 0 0 0;
     }
 }

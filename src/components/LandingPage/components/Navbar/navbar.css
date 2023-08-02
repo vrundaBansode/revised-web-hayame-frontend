@@ -1,75 +1,69 @@
-.navbar-content {
-    padding: 1rem 2rem;
+.navbar {
     display: flex;
     justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    align-items: center;
     background-color: #34AFAA;
-    font-size: 17px;
-    width: 100vw;
     box-sizing: border-box;
-    color: #17262B;
 }
 
-.navbar-pages {
+
+
+.navbar-links {
     display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-}
-
-.pages-links {
-    margin: 0 2rem;
-    /* border: 1px solid black; */
-    padding: 0 1rem;
-    cursor: pointer;
+    justify-content: space-around;
     text-decoration: none;
-    color: #212427;
-    font-weight: 200;
-}
-
-.navbar-logo {
-    /* border: 1px solid rebeccapurple; */
-    padding: 0.75rem 0 0 1rem ;
-    margin-left: 3rem;
-}
-
-.pages-links:hover{
-    font-weight: 600;
-    transition-duration: 1000;
+    list-style-type: none;
+    width: 30vw;
 }
 
 .navbar-sandwich {
+    display: inline-block;
     display: none;
 }
 
-.sandwich-toggle{
-    display: flex;
-    flex-direction: column;
-}
 
 
-@media screen and (max-width: 820px) and (min-width: 360px) {
-    .navbar-content {
-        padding: 0.75rem 1.5rem;
-        font-size: 14px;
-        width: 100vw;
-        align-items: center;
+@media screen and (max-width: 820px) {
+
+    .navbar {
+        flex-direction: column;
+        padding: 0.75rem 1rem;
+        margin: 0;
+        margin-bottom: 0;
     }
 
     .navbar-logo {
-        font-size: 13px;
+        font-size: 0.75rem;
+        margin-left: 2rem;
     }
 
-    .navbar-pages {
-        display: none;
+    .navbar-container {
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .navbar-sandwich {
         display: block;
-        font-size: 20px;
+        margin-top: 0.5rem;
+        margin-right: 1.5rem;
     }
 
-    .pages-links {
-        padding: 0;
+    .navbar-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-decoration: none;
+        list-style-type: none;
+        width: 100vw;
+        background-color: #34AFAA;
+        display: none;
+        font-size: 0.75rem;
+        color: #17262B;
+        margin-left: 1rem;
+
     }
+
 }
-
-

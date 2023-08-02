@@ -4,43 +4,49 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const handleSandwich = () => {
-    document.getElementById("navbar-pages").classList.toggle("sandwich-toggle");
+    if (document.getElementById("navbar-links").style.display == "none") {
+      document.getElementById("navbar-links").style.display = "block";
+    } else {
+      document.getElementById("navbar-links").style.display = "none";
+    }
   };
 
   return (
-    <div className="navbar-content">
-      <div>
-        {/* <img src={logo} alt='logo' className='logo' /> */}
-        <h3 className="navbar-logo">
-          <strong>Hayame</strong>
-        </h3>
-      </div>
-      <div>
-        <div
-          style={{ color: "#212427" }}
-          className="navbar-sandwich"
-          onClick={handleSandwich}
-        >
+    <div className="navbar">
+      <div className="navbar-container">
+        <h3 className="navbar-logo">Hayame</h3>
+
+        <div className="navbar-sandwich" onClick={handleSandwich}>
           ☰
         </div>
-        <ul className="navbar-pages" id="navbar-pages">
-          <li>
-            <Link to="/" className="pages-links">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about-us" className="pages-links">
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className="pages-links">
-              Login
-            </Link>
-          </li>
-        </ul>
       </div>
+
+      <ul className="navbar-links" id="navbar-links">
+        <li>
+          <Link
+            style={{ color: "#17262B", textDecoration: "underline" }}
+            to="/"
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ color: "#17262B", textDecoration: "underline" }}
+            to="/about-us"
+          >
+            About Us
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ color: "#17262B", textDecoration: "underline" }}
+            to="/login"
+          >
+            Login
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 };
