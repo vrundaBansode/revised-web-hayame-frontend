@@ -5,6 +5,7 @@ import Highlighter from "react-highlight-words";
 import "./adminBookings.css";
 import Popup from "reactjs-popup";
 import { useNavigate } from "react-router-dom";
+// import "antd/dist/antd.css";
 
 let bookingId = "";
 
@@ -150,7 +151,8 @@ const AdminBookings = () => {
           json[0]["end_time"];
         document.getElementById("admin-bookings-location").innerText =
           json[0]["location"];
-        document.getElementById("admin-bookings-totalPayment").innerText=json[0]["amount"]
+        document.getElementById("admin-bookings-totalPayment").innerText =
+          json[0]["amount"];
       });
   };
 
@@ -161,6 +163,7 @@ const AdminBookings = () => {
       key: "contractorBookingId",
       className: "bookings-table-style",
       ...getColumnSearchProps("contractorBookingId"),
+      responsive: ["xs"],
     },
     {
       title: "Contractor Name",
@@ -168,6 +171,7 @@ const AdminBookings = () => {
       key: "contractorName",
       className: "bookings-table-style",
       ...getColumnSearchProps("contractorName"),
+      responsive: ["xs"],
     },
     {
       title: "Contractor Email",
@@ -175,6 +179,7 @@ const AdminBookings = () => {
       key: "contractorEmail",
       className: "bookings-table-style",
       ...getColumnSearchProps("contractorEmail"),
+      responsive: ["xs"],
     },
     {
       title: "Workforce Type",
@@ -182,6 +187,7 @@ const AdminBookings = () => {
       key: "labourType",
       className: "bookings-table-style",
       ...getColumnSearchProps("labourType"),
+      responsive: ["xs"],
     },
     {
       title: "Workforce Count",
@@ -191,6 +197,7 @@ const AdminBookings = () => {
       ...getColumnSearchProps("labourCount"),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ["descend", "ascend"],
+      responsive: ["xs"],
     },
     {
       title: "Job Status",
@@ -198,12 +205,14 @@ const AdminBookings = () => {
       key: "status",
       className: "bookings-table-style",
       ...getColumnSearchProps("status"),
+      responsive: ["xs"],
     },
     {
       title: "Action",
       dataIndex: "action",
       key: "action",
       className: "bookings-table-style",
+      responsive: ["xs"],
       render: (text) => (
         <span style={{ textDecoration: "underline", cursor: "pointer" }}>
           <Popup
@@ -227,12 +236,15 @@ const AdminBookings = () => {
     let d = [];
 
     const fillTable = async () => {
-      const response = await fetch("http://45.127.4.151:8000/api/booking?status=Pending", {
-        headers: {
-          Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "http://45.127.4.151:8000/api/booking?status=Pending",
+        {
+          headers: {
+            Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const td = await response.json();
       for (let i = 0; i < td.length; i++) {
         d.unshift({
@@ -259,6 +271,15 @@ const AdminBookings = () => {
         dataSource={tableData}
         className="bookings-table"
       />
+      {/* <Table
+        antTableProps={{
+          showHeader: true,
+          columns: { columns },
+          dataSource: { tableData },
+          pagination: true,
+        }}
+        mobileBreakPoint={768}
+      /> */}
     </div>
   );
 };

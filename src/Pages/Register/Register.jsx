@@ -164,7 +164,9 @@ const Register = () => {
             // setSuccessfulSignUp(true)
             // window.location.href="/login"
             console.log(json.response);
-            alert("Please verify your email by clicking on the link sent through email.")
+            alert(
+              "Please verify your email by clicking on the link sent through email."
+            );
           }
         });
     } else {
@@ -272,7 +274,7 @@ const Register = () => {
                 >
                   <p
                     style={{
-                      color: "#fff8d1",
+                      color: "#E9EBF8",
                       textDecoration: "none",
                       margin: 0,
                     }}

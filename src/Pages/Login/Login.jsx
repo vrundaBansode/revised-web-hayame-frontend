@@ -195,7 +195,9 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar />
+      <div className="login-navbar">
+        <Navbar />
+      </div>
       <div className="login-main" id="login-main">
         <div className="login-container">
           <section className="login-wrapper">

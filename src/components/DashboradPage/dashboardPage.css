@@ -1,15 +1,20 @@
 .DashboardPage {
     display: flex;
     flex-direction: column;
-    width: 100vm;
+    width: 100vw;
     height: 100vh;
+    /* box-sizing: border-box;
+    border: solid hotpink 2px; */
     /* overflow-x: hidden; */
 
 }
 
 .DashboardPageContent {
-    display: flex;
+    /* display: flex;
     flex: 1;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-start; */
+    /* box-sizing: border-box;
+    border: solid saddlebrown 2px; */
+    margin: 0;
 }

@@ -1,19 +1,24 @@
 .DashboardHero {
-    text-align: start;
-    position: sticky;
-    top:10%;
-    color: #212427;
-    /* overflow-x: none; */
+    width: 100vw;
+    height: 100%;
+    color: #17262B;
+    background-color: #E9EBF8;
+    margin-top: 0;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 820px) and (min-width: 320px) {
 
     .DashboardHero {
-        display: block;
-        position: absolute;
-        top: 6%;
-        width: 90vw;
-        padding: 0;
+        width: 100vw;
+        height: 92.4vh;    
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
 }

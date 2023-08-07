@@ -1,9 +1,13 @@
 .DashboardHeader {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #E9EBF8;
+    margin-bottom: 0;
+    width: 100%;
 
 }
 
 .DashboardHeaderText {
+    width: min-content;
     position: relative;
     left: 30%;
     font-family: inherit;
@@ -12,14 +16,15 @@
 @media screen and (min-width: 360px) and (max-width: 820px) {
     
     .DashboardHeader{
-        margin-left: 0;
         width: 100vw;
-        position: static;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
 
     .DashboardHeaderText{
-        position: static;
-        padding: 0 0 0 50%;
-        font-size: 23px;
+        left: 0%;
+        padding-right: 1.5rem;
     }
+
 }
