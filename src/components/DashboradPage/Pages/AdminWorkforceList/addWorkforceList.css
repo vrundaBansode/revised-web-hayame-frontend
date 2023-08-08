@@ -1,14 +1,35 @@
-.workforcelist-table-card{
-    margin-top: 3rem;
-    margin-left: 6rem;
-    width: 66rem
 
+.workforcelist-table-card{
+    padding-top: 3vh;
+    margin-left: 20vw;
+    width: 70vw;
+    height: 90vh;
 }
+
+.workforcelist-table{
+    background-color: white;
+    padding: 1.25rem;
+    width: 70vw !important;
+}
+
+th{
+    font-weight: 900 !important;
+}
+
 
 @media screen and (min-width: 360px) and (max-width: 820px) {
     .workforcelist-table-card{
-        margin-top: 3rem;
-        margin-left: 4rem;
-        width: min-content;
+        /* margin-top: 10vh; */
+        /* border: 2px solid black; */
+        margin-left: 12vw;
+        width: 80vw;
+        height: 100vw;
     }
+
+    .workforcelist-table{
+        padding-top: 0;
+        background-color: white;
+        width: 70vw !important;
+    }
+
 }
